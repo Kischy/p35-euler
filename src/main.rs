@@ -15,6 +15,7 @@ fn main() {
 
     for num in 2..max {
         if is_circular_prime(num, &prime_sieve) {
+            println!("Circular prime found: {}", num);
             answer_p35 += 1;
         }
     }
