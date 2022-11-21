@@ -1,5 +1,6 @@
 use std::collections::{BTreeMap, VecDeque};
 
+// An implementation of the Sieve of Eratosthenes
 pub struct PrimeSieve {
     max_poss_num: u128,
     primes: BTreeMap<u128, bool>,
