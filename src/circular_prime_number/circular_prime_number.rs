@@ -2,13 +2,12 @@ use crate::prime_sieve::prime_sieve::PrimeSieve;
 mod rotating_number;
 
 pub fn is_circular_prime(num: u128, primes: &PrimeSieve) -> bool {
-
     for poss_prime in rotating_number::RotatingNumber::new(num) {
         if primes.is_prime(poss_prime) == false {
             return false;
         }
     }
-    
+
     true
 }
 

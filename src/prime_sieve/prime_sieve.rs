@@ -1,8 +1,8 @@
-use std::collections::VecDeque;
+use std::collections::{BTreeMap, VecDeque};
 
 pub struct PrimeSieve {
     max_poss_num: u128,
-    primes: VecDeque<u128>,
+    primes: BTreeMap<u128, bool>,
 }
 
 impl PrimeSieve {
@@ -20,17 +20,29 @@ impl PrimeSieve {
                 num, self.max_poss_num
             );
         }
-        self.primes.contains(&num)
+
+        match self.primes.get(&num) {
+            Some(is_pr) => return *is_pr,
+            None => return false,
+        }
     }
 }
 
-fn get_primes(max_poss_num: u128) -> VecDeque<u128> {
-    let mut primes: VecDeque<u128> = (2..max_poss_num + 1).collect();
-    let mut i = 0;
-    while i < primes.len() {
-        let curr_num = primes[i];
-        primes.retain(|p| p % curr_num != 0 || *p == curr_num);
-        i += 1;
+fn get_primes(max_poss_num: u128) -> BTreeMap<u128, bool> {
+    let mut primes: BTreeMap<u128, bool> = BTreeMap::new();
+
+    for i in 2..max_poss_num + 1 {
+        primes.insert(i, true);
+    }
+
+    let mut found_primes: VecDeque<u128> = VecDeque::new();
+
+    for (number, is_prime) in &mut primes {
+        *is_prime = found_primes.iter().any(|pr| number % pr == 0) == false;
+
+        if *is_prime {
+            found_primes.push_back(*number);
+        }
     }
     primes
 }
