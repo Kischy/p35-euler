@@ -1,3 +1,5 @@
+mod digits;
+
 pub struct RotatingNumber {
     num: u128,
     digits: Vec<u32>,
@@ -8,7 +10,7 @@ impl RotatingNumber {
     pub fn new(num: u128) -> RotatingNumber {
         RotatingNumber {
             num: num,
-            digits: crate::digits::digits::get_digits(num),
+            digits: digits::get_digits(num),
             front_index: 0,
         }
     }
@@ -32,7 +34,7 @@ impl Iterator for RotatingNumber {
         new_digits.extend_from_slice(&self.digits[0..self.front_index]);
 
         self.front_index += 1;
-        Some(crate::digits::digits::get_number(&new_digits))
+        Some(digits::get_number(&new_digits))
     }
 }
 

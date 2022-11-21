@@ -1,6 +1,5 @@
-mod digits;
+mod circular_prime_number;
 mod prime_sieve;
-mod rotating_number;
 
 fn main() {
     println!("Hello, world!");
