@@ -62,5 +62,6 @@ mod tests {
         assert!(prime_sieve.is_prime(971));
         assert!(prime_sieve.is_prime(197));
         assert!(prime_sieve.is_prime(719));
+        assert!(prime_sieve.is_prime(41));
     }
 }
